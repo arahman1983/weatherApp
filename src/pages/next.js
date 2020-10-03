@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { DaysList } from "../utilities";
+import { CityContext } from "../context/cityContext";
+import { getNextTemp } from "../apis";
 
 export default function Next() {
+  const { selectedCity } = useContext(CityContext);
+  const [nextTemp, setnextTemp] = useState([]);
+
+  useEffect(() => {
+    selectedCity && getNextTemp(selectedCity.name).then((data) => setnextTemp(data.list));
+  }, [selectedCity]);
   return (
     <div className="p-3 result-container">
-      <DaysList icon="01n" number={20} day="Mon"  date="04/10/2020" />
+      {nextTemp.length > 0 && nextTemp.map((item, index) => <DaysList key={index} icon={item.weather[0].icon} number={item.main.temp} day={item.dt} date={item.dt_txt} />)}
     </div>
   );
 }

@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { SearchInput } from "../utilities";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun } from "@fortawesome/free-solid-svg-icons";
 import { CityContext } from "../context/cityContext";
 
 export default function AppHeader() {
@@ -35,7 +33,8 @@ export default function AppHeader() {
           {
             cityTemp.weather && (
               <>
-              <FontAwesomeIcon className="temp-icon" icon={faSun} />
+              <img src={`http://openweathermap.org/img/w/${cityTemp.weather[0].icon}.png`} alt={cityTemp} />
+              {/* <FontAwesomeIcon className="temp-icon" icon={faSun} /> */}
               <p className="my-3">{cityTemp.weather[0].description }</p>
               </>
             )

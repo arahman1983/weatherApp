@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom";
 export default function NavBarComp() {
   return (
     <ul className="nav justify-content-around app-nav">
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <NavLink to="/prev" exact className="app-nav-link" activeClassName="app-nav-active">Last 5 days</NavLink>
-      </li>
+      </li> */}
       <li className="nav-item">
         <NavLink to="/" exact className="app-nav-link" activeClassName="app-nav-active">Today</NavLink>
       </li>
