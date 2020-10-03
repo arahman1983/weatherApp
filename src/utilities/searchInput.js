@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import cities from "../data/cities.json";
+import { CityContext } from "../context/cityContext";
+import { useHistory } from "react-router-dom";
+
 
 export default function SearchInput() {
   const [searchTxt, setSearchTxt] = useState("");
   const [filteredCities, setFilteredCities] = useState([]);
+  const { setSelectedCity } = useContext(CityContext);
+  const history = useHistory();
 
   const searchTxtChange = (e) => {
     let searchValue = e.target.value.toLowerCase();
@@ -19,7 +24,9 @@ export default function SearchInput() {
 
   const completeCityName = (city) => {
     setSearchTxt(`${city.name}, ${city.country}`);
+    setSelectedCity(city);
     setFilteredCities([]);
+    history.push("/")
   };
 
   return (

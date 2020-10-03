@@ -19,14 +19,19 @@
   background-color: black;
   color: #FFF;
   padding: 2rem 1rem;
-  height: 200px;
+  height: 250px;
+  background-image: url('../images/defaultBg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .app-header .input-group{
   border-radius: 20px;
   overflow: hidden;
   /* opacity: 0.7; */
-  top: 50px;
+  position: absolute;
+  top: 180px;
+  width: 92%;
   z-index: 1;
 }
 
@@ -55,11 +60,65 @@
 }
 
 .select-city li {
-  color: darkslategray;
-  border-bottom: darkslategray;
+  color: #494949;
+  background-color: #FFF;
+  border-bottom: #929292 solid 1px;
   padding: 10px;
   list-style: none;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+}
+
+.select-city li:hover{
+  color: #FFF;
+  background-color: #494949;
+}
+
+.app-nav{
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #494949;
+}
+
+.app-nav-link, .app-nav-link:hover{
+  color: #494949;
+  padding: 9px 12px;
+  text-decoration: none;
+}
+
+.app-nav-link:hover{
+  color: #494949;
+  padding: 9px 12px;
+  text-decoration: none;
+  background-color: #d6d6d6;
+}
+
+.app-nav-active{
+  padding: 9px 12px;
+  border-bottom: 5px solid #494949;
+  
+}
+
+.icon-cont{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.temp-icon{
+  font-size: 36px;
+}
+
+.temp-list{
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+  border-bottom:  1px solid #494949;
+}
+
+.result-container{
+  max-height: 300px;
+  overflow: auto;
 }
