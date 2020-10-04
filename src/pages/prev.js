@@ -9,13 +9,10 @@ export default function Prev() {
   useEffect(() => {
     if (cityTemp.coord) {
       let arrayOfPrevDays = [];
-      let ts = Math.round(new Date().getTime() / 1000);
-      for (let i = 1; i <= 5; i++) {
-        let tsDaysBefore = ts - i * 24 * 3600;
-        getPrevTemp(cityTemp.coord.lat, cityTemp.coord.lon, tsDaysBefore).then((data) => arrayOfPrevDays.push(data.hourly[12]));
-      }
+      //let ts = Math.round(new Date().getTime() / 1000);
+      //let tsDaysBefore = ts -  (24 * 3600);
+      getPrevTemp(cityTemp.coord.lat, cityTemp.coord.lon, 24).then((data) => arrayOfPrevDays.push(data.hourly[12]));
       setTempDays(arrayOfPrevDays);
-      // console.log(arrayOfPrevDays)
     }
   }, [cityTemp]);
 
