@@ -10,11 +10,13 @@ export default function Next() {
   useEffect(() => {
     let currentDate = new Date();
     selectedCity && getNextTemp(selectedCity.name).then((data) => {
-      let dataList = data.list.filter(item => {
-        let itemDate = new Date(item.dt * 1000);
-        return itemDate.getDay() !== currentDate.getDay()
-      })
-      setNextTemp([dataList[3],dataList[11],dataList[19],dataList[27],dataList[35]])
+      if(data.length>0){
+        let dataList = data.list.filter(item => {
+          let itemDate = new Date(item.dt * 1000);
+          return itemDate.getDay() !== currentDate.getDay()
+        })
+        setNextTemp([dataList[3],dataList[11],dataList[19],dataList[27],dataList[35]])
+      }
     });
     
   }, [selectedCity]);
