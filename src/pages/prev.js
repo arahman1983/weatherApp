@@ -8,14 +8,11 @@ export default function Prev() {
   const [tempDays, setTempDays] = useState([]);
   useEffect(() => {
     if (cityTemp.coord) {
-      let arrayOfPrevDays = [];
       let ts = Math.round(new Date().getTime() / 1000);
-      let tsDaysBefore = ts -  (24 * 3600);
-      getPrevTemp(cityTemp.coord.lat, cityTemp.coord.lon, tsDaysBefore).then((data) => arrayOfPrevDays.push(data.hourly[12]));
-      setTempDays(arrayOfPrevDays);
+      let tsDaysBefore = ts - 24 * 3600;
+      getPrevTemp(cityTemp.coord.lat, cityTemp.coord.lon, tsDaysBefore).then((data) => setTempDays([data.hourly[12]]));
     }
   }, [cityTemp]);
-
   return (
     <div className="p-3 result-container">
       {tempDays.length > 0 &&

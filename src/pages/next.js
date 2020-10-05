@@ -10,10 +10,12 @@ export default function Next() {
   useEffect(() => {
     let currentDate = new Date();
     selectedCity && getNextTemp(selectedCity.name).then((data) => {
-      if(data.length>0){
-        let dataList = data.list.filter(item => {
+      if(data.list.length>0){
+          let dataList = data.list.filter(item => {
           let itemDate = new Date(item.dt * 1000);
-          return itemDate.getDay() !== currentDate.getDay()
+          if(itemDate.getDay() !== currentDate.getDay()){
+            return item
+          }
         })
         setNextTemp([dataList[3],dataList[11],dataList[19],dataList[27],dataList[35]])
       }
