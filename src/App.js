@@ -1,28 +1,32 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style/app-style.css";
-import {AppHeader, NavBarComp} from './components';
-import {CityContext} from './context/cityContext';
+import { AppHeader, NavBarComp } from "./components";
+import { CityContext } from "./context/cityContext";
 import { BrowserRouter as Router } from "react-router-dom";
-import AppRoutes from './router/routesComp'
-import {getCurrentTemp} from './apis'
-
+import AppRoutes from "./router/routesComp";
+import { getCurrentTemp, getCurrentLoc } from "./apis";
 
 function App() {
-  
   const [selectedCity, setSelectedCity] = useState();
-  const [cityTemp, setCityTemp] = useState({})
+  const [cityTemp, setCityTemp] = useState({});
+
+ 
 
   useEffect(() => {
-    selectedCity && getCurrentTemp(selectedCity.name).then(data=> {
-      setCityTemp(data)
-    })
-  }, [selectedCity])
+    selectedCity &&
+      getCurrentTemp(selectedCity.name).then((data) => {
+        setCityTemp(data);
+      });
+  }, [selectedCity]);
 
+  useEffect(() => {
+    getCurrentLoc().then(data => setSelectedCity(data.city))
+  }, []);
   return (
     <div className="page-bg">
       <div className="col-lg-4 col-md-6 app-container">
-        <CityContext.Provider value={{selectedCity,setSelectedCity, cityTemp}} >
+        <CityContext.Provider value={{ selectedCity, setSelectedCity, cityTemp }}>
           <Router>
             <AppHeader />
             <NavBarComp />
