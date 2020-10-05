@@ -5,13 +5,29 @@ import { AppHeader, NavBarComp } from "./components";
 import { CityContext } from "./context/cityContext";
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "./router/routesComp";
-import { getCurrentTemp, getCurrentLoc } from "./apis";
+import { getCurrentTemp } from "./apis";
+import cites from "./data/cities.json";
 
 function App() {
   const [selectedCity, setSelectedCity] = useState();
   const [cityTemp, setCityTemp] = useState({});
 
- 
+  function getlocation() {
+    navigator.geolocation.getCurrentPosition(showLoc);
+  }
+  
+  function showLoc(pos) {
+    let locLat = pos.coords.latitude.toFixed(2);
+    let locLon = pos.coords.longitude.toFixed(2);
+    // eslint-disable-next-line array-callback-return
+    setSelectedCity(cites.filter(item=> {
+      let latDiff = Math.abs( item.lat - locLat )
+      let lonDiff = Math.abs( item.lng - locLon )
+      if(latDiff <=0.1 && lonDiff <=0.1){
+        return item
+      }  
+    })[0])
+  }
 
   useEffect(() => {
     selectedCity &&
@@ -21,7 +37,8 @@ function App() {
   }, [selectedCity]);
 
   useEffect(() => {
-    getCurrentLoc().then(data => setSelectedCity(data.city))
+    getlocation();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="page-bg">

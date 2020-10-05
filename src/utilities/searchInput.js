@@ -29,6 +29,7 @@ export default function SearchInput() {
     history.push("/")
   };
 
+
   return (
     <>
       <div className="input-group mb-3">

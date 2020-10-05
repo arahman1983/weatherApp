@@ -21,7 +21,7 @@ export default function AppHeader() {
     <div className="app-header" style={{backgroundImage: `url(${background})`}}>
       <div className="row">
         <div className="col-8 pl-4">
-          <p className="p-0">{today} </p>
+          <p className="p-0">{`${selectedCity && selectedCity.name}: ${today}`} </p>
           {cityTemp.main ? (
             <>
               <h1>
