@@ -39,7 +39,7 @@ export default function AppHeader() {
           {
             cityTemp.weather && (
               <>
-              <img src={`http://openweathermap.org/img/w/${cityTemp.weather[0].icon}.png`} width="70" alt={cityTemp} />
+              <img src={`https://openweathermap.org/img/w/${cityTemp.weather[0].icon}.png`} width="70" alt={cityTemp} />
               {/* <FontAwesomeIcon className="temp-icon" icon={faSun} /> */}
               <p className="">{cityTemp.weather[0].description }</p>
               </>

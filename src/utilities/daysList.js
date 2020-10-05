@@ -12,7 +12,7 @@ export default function DaysList({ day, date, number, icon }) {
       
       </div>
       <div className="text-center">
-        <img src={`http://openweathermap.org/img/w/${icon}.png`} alt="logo" />
+        <img src={`https://openweathermap.org/img/w/${icon}.png`} alt="logo" />
         <br />
         {number} <sup>o</sup>C
       </div>
